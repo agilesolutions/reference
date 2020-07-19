@@ -35,7 +35,7 @@ public class EmployeeRepository {
 
     public List<Employee> findAdultMale() {
 
-        EmployeePredicates.filterEmployees(employees,isAdultMale());
+        return EmployeePredicates.filterEmployees(employees,isAdultMale());
 
     }
 
