@@ -1,6 +1,6 @@
-package com.nocom.ref.reference.util;
+package com.nocom.ref.util;
 
-import com.nocom.ref.reference.model.Employee;
+import com.nocom.ref.model.Employee;
 
 import java.util.List;
 import java.util.function.Predicate;

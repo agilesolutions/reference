@@ -1,19 +1,21 @@
-package com.nocom.ref.reference.dto;
+package com.nocom.ref.repository;
 
-import com.nocom.ref.reference.model.Employee;
-import com.nocom.ref.reference.util.EmployeePredicates;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.nocom.ref.model.Employee;
+import com.nocom.ref.util.EmployeePredicates;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.OptionalInt;
 
-import static com.nocom.ref.reference.util.EmployeePredicates.*;
+import static com.nocom.ref.util.EmployeePredicates.*;
 
 @Service
 public class EmployeeRepository {
 
-    private List<Employee> employees = new ArrayList<Employee>();
+    private static List<Employee> employees = new ArrayList<Employee>();
 
     @PostConstruct
     public void init() {
@@ -35,6 +37,10 @@ public class EmployeeRepository {
 
         EmployeePredicates.filterEmployees(employees,isAdultMale());
 
+    }
+
+    public static int getMaxId() {
+        return employees.stream().mapToInt(Employee::getId).max().orElse(1) + 1;
     }
 
 

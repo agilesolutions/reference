@@ -1,7 +1,12 @@
-package com.nocom.ref.reference.model;
+package com.nocom.ref.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 
 @Data
 @Builder
+@AllArgsConstructor
 public class Employee {
 
     private Integer id;

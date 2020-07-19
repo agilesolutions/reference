@@ -1,4 +1,4 @@
-package com.nocom.ref.reference.mapper;
+package com.nocom.ref.mapper;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,4 +1,4 @@
-package com.nocom.ref.reference;
+package com.nocom.ref;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

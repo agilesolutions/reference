@@ -1,4 +1,4 @@
-package com.nocom.ref.reference;
+package com.nocom.ref;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

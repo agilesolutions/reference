@@ -1,4 +1,4 @@
-package com.nocom.ref.reference.dto;
+package com.nocom.ref.dto;
 
 import lombok.Builder;
 import lombok.Data;
