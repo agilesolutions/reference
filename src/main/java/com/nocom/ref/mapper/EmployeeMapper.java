@@ -2,9 +2,7 @@ package com.nocom.ref.mapper;
 
 import com.nocom.ref.dto.EmployeeDTO;
 import com.nocom.ref.model.Employee;
-import static com.nocom.ref.repository.EmployeeRepository.getMaxId;
-
-import java.util.Random;
+import static com.nocom.ref.repository.EmployeeRepository.getNextId;
 
 public class EmployeeMapper implements ObjectMapper<Employee, EmployeeDTO> {
 
@@ -18,6 +16,6 @@ public class EmployeeMapper implements ObjectMapper<Employee, EmployeeDTO> {
 
     @Override
     public Employee mapFromDto(EmployeeDTO d) {
-        return Employee.builder().id(getMaxId()).age(21).firstName("Rob").lastName("Whatever").build();
+        return Employee.builder().id(getNextId()).age(21).firstName("Rob").lastName("Whatever").build();
     }
 }

@@ -39,7 +39,7 @@ public class EmployeeRepository {
 
     }
 
-    public static int getMaxId() {
+    public static int getNextId() {
         return employees.stream().mapToInt(Employee::getId).max().orElse(1) + 1;
     }
 
