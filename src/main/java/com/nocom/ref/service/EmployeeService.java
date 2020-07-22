@@ -22,4 +22,8 @@ public class EmployeeService {
         return employeeService.findAdultMale();
 
     }
+
+    public Employee save(Employee employee) {
+        return employee;
+    }
 }
