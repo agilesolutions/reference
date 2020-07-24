@@ -6,11 +6,10 @@ import com.nocom.ref.model.Employee;
 import com.nocom.ref.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/employee")
@@ -22,7 +21,14 @@ public class EmployeeController {
     private final EmployeeMapper employeeMapper;
 
 
+    @PutMapping(value = "/save")
     public ResponseEntity<EmployeeDTO> save(@Valid @RequestBody EmployeeDTO employee) {
         return ResponseEntity.ok(employeeMapper.mapToDto(employeeService.save(employeeMapper.mapFromDto(employee))));
     }
+
+    @GetMapping(value = "/employees")
+    public ResponseEntity<List<EmployeeDTO>> findAdultMale() {
+        return ResponseEntity.ok(employeeMapper.mapToDtos(employeeService.findAdultMale()));
+    }
+
 }
