@@ -29,7 +29,7 @@ public class EmployeeServiceTest {
     @Before
     public void init() {
 
-        Employee employee = Employee.builder().id(1L).age(23).gender("M").firstName("Rong").lastName("Whatever").build();
+        Employee employee = Employee.builder().id(1).age(23).gender("M").firstName("Rong").lastName("Whatever").build();
 
         lenient().when(employeeRepository.findAdultMale()).thenReturn(Collections.singletonList(employee));
 
@@ -41,7 +41,7 @@ public class EmployeeServiceTest {
         List<Employee> employees = employeeService.findAdultMale();
 
         assertNotNull(employees);
-        assertTrue(employees.size() instanceof == 1);
+        assertTrue(employees.size() == 1);
         Mockito.verify(employeeRepository,Mockito.times(1)).findAdultMale();
 
     }
