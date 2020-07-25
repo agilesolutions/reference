@@ -2,6 +2,7 @@ package com.nocom.ref.problem;
 
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -25,13 +26,17 @@ public class ExceptionTranslator implements ProblemHandling {
 
     private String applicationName;
 
-    @ExceptionHandler
-    public ResponseEntity<Problem> handleBadRequestAlertException(EmployeeNotFoundProblem ex,
+    @ExceptionHandler(EmployeeNotFoundException.class)
+    public ResponseEntity<Problem> handleBadRequestAlertException(EmployeeNotFoundException ex,
                                                                   NativeWebRequest request) {
 
-        Problem problem = Problem.builder().withType(URI.create("https://example.org/out-of-stock"))
-                .withTitle("Customer not found").withStatus(Status.BAD_REQUEST)
-                .withDetail("Customer B00027Y5QG is not available").with("customer", ex.getDetail()).build();
+        Problem problem = Problem.builder()
+                .withType(URI.create("https://example.org/out-of-stock"))
+                .withTitle("Customer not found")
+                .withStatus(Status.FORBIDDEN)
+                .withDetail("Employee B00027Y5QG is not available")
+                .with("employee", ex.getDetail())
+                .build();
 
         return create(ex, problem, request);
     }

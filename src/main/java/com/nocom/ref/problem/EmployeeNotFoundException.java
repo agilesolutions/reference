@@ -5,12 +5,12 @@ import java.net.URI;
 import org.zalando.problem.AbstractThrowableProblem;
 import org.zalando.problem.Status;
 
-public class EmployeeNotFoundProblem extends AbstractThrowableProblem {
+public class EmployeeNotFoundException extends AbstractThrowableProblem {
 
     private static final URI TYPE
             = URI.create("https://example.org/not-found");
 
-    public EmployeeNotFoundProblem(Long employeeId) {
+    public EmployeeNotFoundException(Long employeeId) {
         super(
                 TYPE,
                 "Not found",
