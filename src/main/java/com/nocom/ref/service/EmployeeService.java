@@ -18,9 +18,13 @@ public class EmployeeService {
     @PreAuthorize("@securityUtils.isManager()")
     public List<Employee> findAdultMale() {
 
-
-
         return employeeRepository.findAdultMale();
+
+    }
+
+    public Employee findById(Integer id) {
+
+        return employeeRepository.findById(id);
 
     }
 

@@ -5,6 +5,7 @@ import com.nocom.ref.mapper.EmployeeMapper;
 import com.nocom.ref.model.Employee;
 import com.nocom.ref.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +25,15 @@ public class EmployeeController {
     @PutMapping(value = "/save")
     public ResponseEntity<EmployeeDTO> save(@Valid @RequestBody EmployeeDTO employee) {
         return ResponseEntity.ok(employeeMapper.mapToDto(employeeService.save(employeeMapper.mapFromDto(employee))));
+    }
+
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public  ResponseEntity<EmployeeDTO>  getEmployee(@PathVariable("id") Long id) {
+        if (MY_TASKS.containsKey(taskId)) {
+            return MY_TASKS.get(taskId);
+        } else {
+            throw new TaskNotFoundProblem(taskId);
+        }
     }
 
     @GetMapping(value = "/employees")

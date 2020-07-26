@@ -1,6 +1,7 @@
 package com.nocom.ref.repository;
 
 import com.nocom.ref.model.Employee;
+import com.nocom.ref.problem.EmployeeNotFoundException;
 import com.nocom.ref.util.EmployeePredicates;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +32,10 @@ public class EmployeeRepository {
         Employee e9 = new Employee(9, 15, "F", "Neetu", "Singh");
         Employee e10 = new Employee(10, 45, "M", "Naveen", "Jain");
         employees.addAll(Arrays.asList(new Employee[]{e1, e2, e3, e4, e5, e6, e7, e8, e9, e10}));
+    }
+
+    public Employee findById(Integer id) {
+        employees.stream().filter(e -> e.getId() == id).findFirst().orElseThrow(() -> new EmployeeNotFoundException(id));
     }
 
     public List<Employee> findAdultMale() {

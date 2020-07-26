@@ -33,7 +33,7 @@ public class ExceptionTranslator implements ProblemHandling {
         Problem problem = Problem.builder()
                 .withType(URI.create("https://example.org/out-of-stock"))
                 .withTitle("Customer not found")
-                .withStatus(Status.FORBIDDEN)
+                .withStatus(Status.NOT_FOUND)
                 .withDetail("Employee B00027Y5QG is not available")
                 .with("employee", ex.getDetail())
                 .build();
