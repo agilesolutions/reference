@@ -1,14 +1,11 @@
 package com.nocom.ref.util;
 
-import com.nocom.ref.model.User;
+import com.nocom.ref.model.CustomUser;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.HttpClientErrorException;
 
-import java.util.Collection;
 import java.util.Optional;
-import java.util.function.Predicate;
 
 @Component("securityUtils")
 public class SecurityUtils {
@@ -22,9 +19,9 @@ public class SecurityUtils {
     public boolean isCurrentUserSwiss() {
         Optional<Object> currentUser = Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 
-        return currentUser.filter(User.class::isInstance)
-                .map(User.class::cast)
-                .flatMap(User::getLocation)
+        return currentUser.filter(CustomUser.class::isInstance)
+                .map(CustomUser.class::cast)
+                .flatMap(CustomUser::getLocation)
                 .map("CH"::equals)
                 .orElse(false);
 
@@ -33,9 +30,9 @@ public class SecurityUtils {
     public String getCurrentUserName() {
         Optional<Object> currentUser = Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 
-        return currentUser.filter(User.class::isInstance)
-                .map(User.class::cast)
-                .map(User::getUsername)
+        return currentUser.filter(CustomUser.class::isInstance)
+                .map(CustomUser.class::cast)
+                .map(CustomUser::getUsername)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
     }

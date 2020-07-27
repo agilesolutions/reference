@@ -1,8 +1,11 @@
 package com.nocom.ref.service;
 
+import com.nocom.ref.model.CustomUser;
 import com.nocom.ref.model.MyEntitlement;
 import com.nocom.ref.model.MyEntity;
 import com.nocom.ref.util.SecurityUtils;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.Collection;
@@ -12,7 +15,7 @@ import java.util.stream.Collectors;
 
 public class SecurityService {
 
-    private Set<String> getDelegated() {
+    public Set<String> getDelegated() {
 
         return SecurityContextHolder.getContext().getAuthentication().getAuthorities()
                 .stream()
@@ -25,5 +28,17 @@ public class SecurityService {
                 .map(Optional::get)
                 .collect(Collectors.toSet());
     }
+
+    public static Optional<CustomUser> getCurrentUser() {
+
+        Optional.ofNullable(SecurityContextHolder.getContext())
+                .map(SecurityContext::getAuthentication)
+                .map(Authentication::getPrincipal)
+                .filter(CustomUser.class::isInstance)
+                .map(CustomUser.class::cast);
+
+    }
+
+
 
 }
