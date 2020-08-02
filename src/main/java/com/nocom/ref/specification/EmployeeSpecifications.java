@@ -44,7 +44,7 @@ public class EmployeeSpecifications {
     public static Specification<Employee> getEmployeesByStreet(String street) {
 
         return (root, query, criteriaBuilder) -> {
-            final Join<Employee, Address> addresses = root.join("address", JoinType.LEFT);
+            final Join<Employee, Address> addresses = root.join("address", JoinType.INNER);
             return criteriaBuilder.equal(addresses.get("street"), street);
         }
     }
