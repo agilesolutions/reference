@@ -1,7 +1,7 @@
 package com.nocom.ref.service;
 
 import com.nocom.ref.model.Employee;
-import com.nocom.ref.repository.EmployeeRepository;
+import com.nocom.ref.repository.EmployeePredicateRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class EmployeeServiceTest {
 
     @Mock
-    EmployeeRepository employeeRepository;
+    EmployeePredicateRepository employeeRepository;
 
     @InjectMocks
     EmployeeService employeeService;

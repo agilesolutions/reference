@@ -2,7 +2,7 @@ package com.nocom.ref.mapper;
 
 import com.nocom.ref.dto.EmployeeDTO;
 import com.nocom.ref.model.Employee;
-import static com.nocom.ref.repository.EmployeeRepository.getNextId;
+import static com.nocom.ref.repository.EmployeePredicateRepository.getNextId;
 
 public class EmployeeMapper implements ObjectMapper<Employee, EmployeeDTO> {
 
