@@ -1,5 +1,6 @@
 package com.nocom.ref.service;
 
+import com.nocom.ref.dto.AdvancedSearchDTO;
 import com.nocom.ref.model.Employee;
 import com.nocom.ref.problem.EmployeeNotFoundException;
 import com.nocom.ref.repository.EmployeePredicateRepository;
@@ -43,18 +44,23 @@ public class EmployeeService {
     }
 
 
-    public List<Employee> findByName(String name, Integer age) {
+    public List<Employee> findByName(AdvancedSearchDTO dto) {
 
-        List<Specification<Employee>> specs = new ArrayList<>();
+        // this is what you should do as first step at CS
+        Optional<Specification<Employee>> spec = Optional.empty();
 
-        Optional.ofNullable(name)
-                .filter(Predicate.not(Objects::isNull))
-                .ifPresentOrElse(p -> specs.add(Specification.where(getEmployeesByName(name))),() -> specs.add(Specification.where(isEmpty())));
+        // this is what you should do every intermediate argument at CS
+        Optional.ofNullable(dto.getName())
+                .ifPresent(p -> { spec.ifPresentOrElse(s -> spec.get().and(getEmployeesByName(p)),() -> spec.of(Specification.where(getEmployeesByName(dto.getName()))));  });
 
-        specs.get(0).and(getEmployeesByAge(21));
-        //Specification<Employee> spec = Specification.where(getEmployeesByName(name));
+        // this is what you should do every intermediate argument at CS
+        Optional.ofNullable(dto.getAge())
+                .ifPresent(p -> { spec.ifPresentOrElse(s -> spec.get().and(getEmployeesByAge(p)),() -> spec.of(Specification.where(getEmployeesByAge(dto.getAge()))));  });
 
-        return employeeRepository.findAll(specs.get(0));
+        // this is what you should do as final step at CS
+        Specification<Employee>finalSpec = spec.orElse(Specification.not(isEmpty()));
+
+        return employeeRepository.findAll(finalSpec);
 
     }
 
