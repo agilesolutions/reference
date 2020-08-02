@@ -1,12 +1,11 @@
 package com.nocom.ref.specification;
 
+import com.nocom.ref.model.Address;
 import com.nocom.ref.model.Employee;
 import org.springframework.data.jpa.domain.Specification;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.JoinType;
 
 public class EmployeeSpecifications {
 
@@ -36,6 +35,20 @@ public class EmployeeSpecifications {
     public static Specification<Employee> getEmployeesByAge(Integer age) {
         return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("age"), age);
     }
+
+    /**
+     * where age = @street
+     * @param street
+     * @return
+     */
+    public static Specification<Employee> getEmployeesByStreet(String street) {
+
+        return (root, query, criteriaBuilder) -> {
+            final Join<Employee, Address> addresses = root.join("address", JoinType.LEFT);
+            return criteriaBuilder.equal(addresses.get("street"), street);
+        }
+    }
+
 
     /**
      * I like to add this because without it if no criteria is specified then

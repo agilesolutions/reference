@@ -8,4 +8,6 @@ public class AdvancedSearchDTO {
     String name;
 
     Integer age;
+
+    String street;
 }
