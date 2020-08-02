@@ -1,17 +1,14 @@
 package com.nocom.ref.repository;
 
 import com.nocom.ref.model.Employee;
-import com.nocom.ref.problem.EmployeeNotFoundException;
 import com.nocom.ref.util.EmployeePredicates;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.OptionalInt;
 
-import static com.nocom.ref.util.EmployeePredicates.*;
+import static com.nocom.ref.util.EmployeePredicates.isAdultMale;
 
 @Service
 public class EmployeePredicateRepository {
@@ -20,7 +17,7 @@ public class EmployeePredicateRepository {
 
     @PostConstruct
     public void init() {
-
+/**
         Employee e1 = new Employee(1, 23, "M", "Rick", "Beethovan");
         Employee e2 = new Employee(2, 13, "F", "Martina", "Hengis");
         Employee e3 = new Employee(3, 43, "M", "Ricky", "Martin");
@@ -32,6 +29,7 @@ public class EmployeePredicateRepository {
         Employee e9 = new Employee(9, 15, "F", "Neetu", "Singh");
         Employee e10 = new Employee(10, 45, "M", "Naveen", "Jain");
         employees.addAll(Arrays.asList(new Employee[]{e1, e2, e3, e4, e5, e6, e7, e8, e9, e10}));
+ **/
     }
 
     public List<Employee> findAdultMale() {

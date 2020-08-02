@@ -46,14 +46,15 @@ public class EmployeeSpecifications {
         return (root, query, criteriaBuilder) -> {
             final Join<Employee, Address> addresses = root.join("address", JoinType.INNER);
             return criteriaBuilder.equal(addresses.get("street"), street);
-        }
-    }
+        };
 
+    }
 
     /**
      * I like to add this because without it if no criteria is specified then
      * everything is returned. Because that's how queries work without where
      * clauses. However, if my user doesn't provide any criteria I want to
+     * 
      * say no results found.
      **/
     public static Specification<Employee> isEmpty() {

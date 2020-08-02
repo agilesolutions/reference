@@ -54,7 +54,7 @@ public class EmployeeService {
                 .ifPresent(p -> { spec.ifPresentOrElse(s -> spec.get().and(getEmployeesByAge(p)),() -> spec.of(Specification.where(getEmployeesByAge(dto.getAge()))));  });
 
         // this is what you should do every intermediate argument at CS
-        Optional.ofNullable(dto.getStreet())
+        Optional.ofNullable(dto.getStreet()).filter()
                 .ifPresent(p -> { spec.ifPresentOrElse(s -> spec.get().and(getEmployeesByStreet(p)),() -> spec.of(Specification.where(getEmployeesByStreet(dto.getStreet()))));  });
 
 
@@ -64,7 +64,6 @@ public class EmployeeService {
         return employeeRepository.findAll(finalSpec);
 
     }
-
 
     public Employee save(Employee employee) {
         return employee;
