@@ -31,7 +31,7 @@ public class SecurityService {
 
     public static Optional<CustomUser> getCurrentUser() {
 
-        Optional.ofNullable(SecurityContextHolder.getContext())
+        return Optional.ofNullable(SecurityContextHolder.getContext())
                 .map(SecurityContext::getAuthentication)
                 .map(Authentication::getPrincipal)
                 .filter(CustomUser.class::isInstance)

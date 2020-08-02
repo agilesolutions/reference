@@ -38,7 +38,7 @@ public class EmployeeControllerTest {
     }
 
     @Test
-    public void test_find_adult_mail() {
+    public void test_find_adult_mail() throws Exception {
 
         ResultActions resultActions = mockMvc.perform(get(BASE_URL + "/employees")).andExpect(status().isOk());
 

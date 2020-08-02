@@ -10,7 +10,7 @@ public class EmployeeNotFoundException extends AbstractThrowableProblem {
     private static final URI TYPE
             = URI.create("https://example.org/not-found");
 
-    public EmployeeNotFoundException(Integer employeeId) {
+    public EmployeeNotFoundException(Long employeeId) {
         super(
                 TYPE,
                 "Not found",

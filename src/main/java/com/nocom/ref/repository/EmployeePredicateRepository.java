@@ -34,10 +34,6 @@ public class EmployeePredicateRepository {
         employees.addAll(Arrays.asList(new Employee[]{e1, e2, e3, e4, e5, e6, e7, e8, e9, e10}));
     }
 
-    public Employee findById(Integer id) {
-        employees.stream().filter(e -> e.getId() == id).findFirst().orElseThrow(() -> new EmployeeNotFoundException(id));
-    }
-
     public List<Employee> findAdultMale() {
 
         return EmployeePredicates.filterEmployees(employees, isAdultMale());

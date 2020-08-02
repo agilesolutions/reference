@@ -10,28 +10,31 @@ import javax.persistence.criteria.Root;
 
 public class EmployeeSpecifications {
 
-    public static Specification<Employee> getEmployeesByName(String name) {
-        return new Specification<Employee>() {
-            @Override
-            public Predicate toPredicate(Root<Employee> root,
-                                         CriteriaQuery<?> query,
-                                         CriteriaBuilder criteriaBuilder) {
-                Predicate equalPredicate = criteriaBuilder.equal(root.get("firstName"), name);
-                return equalPredicate;
-            }
-        };
+    /**
+     * where firstName = @id
+     * @param id
+     * @return
+     */
+    public static Specification<Employee> getEmployeesById(Long id) {
+        return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("id"), id);
     }
 
+    /**
+     * where firstName = @name
+     * @param name
+     * @return
+     */
+    public static Specification<Employee> getEmployeesByName(String name) {
+        return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("firstName"), name);
+    }
+
+    /**
+     * where age = @age
+     * @param age
+     * @return
+     */
     public static Specification<Employee> getEmployeesByAge(Integer age) {
-        return new Specification<Employee>() {
-            @Override
-            public Predicate toPredicate(Root<Employee> root,
-                                         CriteriaQuery<?> query,
-                                         CriteriaBuilder criteriaBuilder) {
-                Predicate equalPredicate = criteriaBuilder.equal(root.get("age"), name);
-                return equalPredicate;
-            }
-        };
+        return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("age"), age);
     }
 
     /**
@@ -41,15 +44,7 @@ public class EmployeeSpecifications {
      * say no results found.
      **/
     public static Specification<Employee> isEmpty() {
-        return new Specification<Employee>() {
-            @Override
-            public Predicate toPredicate(Root<Employee> root,
-                                         CriteriaQuery<?> query,
-                                         CriteriaBuilder criteriaBuilder) {
-                Predicate equalPredicate = criteriaBuilder.equal(root.get("id"), -1);
-                return equalPredicate;
-            }
 
-        };
+        return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("id"), -1);
     }
 }

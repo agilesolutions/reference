@@ -3,6 +3,7 @@ package com.nocom.ref.controller;
 import com.nocom.ref.dto.EmployeeDTO;
 import com.nocom.ref.mapper.EmployeeMapper;
 import com.nocom.ref.model.Employee;
+import com.nocom.ref.problem.EmployeeNotFoundException;
 import com.nocom.ref.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -29,11 +30,8 @@ public class EmployeeController {
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public  ResponseEntity<EmployeeDTO>  getEmployee(@PathVariable("id") Long id) {
-        if (MY_TASKS.containsKey(taskId)) {
-            return MY_TASKS.get(taskId);
-        } else {
-            throw new TaskNotFoundProblem(taskId);
-        }
+
+        return ResponseEntity.ok(employeeMapper.mapToDto(employeeService.findById(id)));
     }
 
     @GetMapping(value = "/employees")
