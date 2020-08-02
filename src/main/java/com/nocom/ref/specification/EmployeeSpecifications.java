@@ -10,13 +10,25 @@ import javax.persistence.criteria.Root;
 
 public class EmployeeSpecifications {
 
-    public static Specification<Employee> getEmployeesByNameSpec(String name) {
+    public static Specification<Employee> getEmployeesByName(String name) {
         return new Specification<Employee>() {
             @Override
             public Predicate toPredicate(Root<Employee> root,
                                          CriteriaQuery<?> query,
                                          CriteriaBuilder criteriaBuilder) {
                 Predicate equalPredicate = criteriaBuilder.equal(root.get("firstName"), name);
+                return equalPredicate;
+            }
+        };
+    }
+
+    public static Specification<Employee> getEmployeesByAge(Integer age) {
+        return new Specification<Employee>() {
+            @Override
+            public Predicate toPredicate(Root<Employee> root,
+                                         CriteriaQuery<?> query,
+                                         CriteriaBuilder criteriaBuilder) {
+                Predicate equalPredicate = criteriaBuilder.equal(root.get("age"), name);
                 return equalPredicate;
             }
         };

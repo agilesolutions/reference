@@ -10,6 +10,11 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.function.Predicate;
+
+import  static com.nocom.ref.specification.EmployeeSpecifications.*;
 
 
 @AllArgsConstructor
@@ -34,9 +39,17 @@ public class EmployeeService {
     }
 
 
-    public List<Employee> findByName(String name) {
+    public List<Employee> findByName(String name, Integer age) {
 
-        return employeeRepository.findAll(Specification.where(EmployeeSpecifications.getEmployeesByNameSpec(name)));
+        Specification<Employee> spec;
+
+        Optional.ofNullable(name)
+                .filter(Predicate.not(Objects::isNull))
+                .ifPresentOrElse(p -> spec = Specification.where(getEmployeesByName(name)),() -> spec = Specification.where(isEmpty()));
+
+        //Specification<Employee> spec = Specification.where(getEmployeesByName(name));
+
+        return employeeRepository.findAll(spec.and(getEmployeesByAge(age)));
 
     }
 
