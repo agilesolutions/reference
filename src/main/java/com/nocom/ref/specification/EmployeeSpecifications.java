@@ -23,11 +23,11 @@ public class EmployeeSpecifications {
     }
 
     /**
-  I like to add this because without it if no criteria is specified then
-  everything is returned. Because that's how queries work without where
-  clauses. However, if my user doesn't provide any criteria I want to
-  say no results found.
- **/
+     * I like to add this because without it if no criteria is specified then
+     * everything is returned. Because that's how queries work without where
+     * clauses. However, if my user doesn't provide any criteria I want to
+     * say no results found.
+     **/
     public static Specification<Employee> isEmpty() {
         return new Specification<Employee>() {
             @Override
@@ -38,4 +38,6 @@ public class EmployeeSpecifications {
                 return equalPredicate;
             }
 
-        }
+        };
+    }
+}
