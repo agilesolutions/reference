@@ -9,15 +9,19 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 import static com.nocom.ref.specification.EmployeeSpecifications.*;
 
-
+/**
+ *
+ */
 @AllArgsConstructor
 @Service
+@Transactional
 public class EmployeeService {
 
     private EmployeePredicateRepository employeePredicateRepository;
